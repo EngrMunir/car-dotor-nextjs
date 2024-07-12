@@ -3,6 +3,7 @@ import React from 'react';
 
 const ServiceCard = ({service}) => {
     const {title, img, price }=service || {};
+    // console.log(img)
     return (
         <div className="card card-compact bg-base-100 w-96 shadow-xl">
   <figure>

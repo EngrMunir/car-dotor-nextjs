@@ -12,7 +12,6 @@ const Navbar = () => {
     console.log(session)
 
 
-
     const navItems =[
         {
             title:"Home",
@@ -60,10 +59,14 @@ const Navbar = () => {
     {/* <div>
         <Image alt={session?.data?.user?.name} src={session?.data?.user?.image} height={50} width={50}></Image>
     </div> */}
-   {!session.data &&
+    {
+        session?.status ==='loading' && 
+        <h6>Loading-----</h6>
+    }
+   {session.status ==='unauthenticated' &&
      <Link href="/login"> <button className='btn btn-primary mr-4'>Login</button></Link>    
     }
-    { session.data &&
+    { session.status === 'authenticated' &&
         <button className='btn btn-primary px-8' onClick={()=> signOut}>Logout</button>
     }
     </div>

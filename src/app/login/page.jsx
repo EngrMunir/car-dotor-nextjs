@@ -1,13 +1,32 @@
 "use client"
 
+import { redirect } from 'next/dist/server/api-utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { signIn } from "next-auth/react";
 import { FaGithub, FaGoogle } from "react-icons/fa6";
+import { useRouter } from 'next/navigation';
+import SocialSignin from '@/components/shared/SocialSignin';
+
 
 const page = () => {
-    const handleLogin = async()=>{
+    const router = useRouter();
 
+    const handleLogin = async(event)=>{
+        event.preventDefault();
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+
+        const resp = await signIn('credentials',{
+            email,
+            password,
+            redirect: false
+        });
+        console.log(resp)
+        if(resp.status === 200){
+            router.push('/')
+        }
     }
     return (
         <div className='container mx-auto py-24 px-24'>
@@ -28,10 +47,7 @@ const page = () => {
                     </form>
                     <div>
                         <h6 className='my-5 text-center'>or sign in with</h6>
-                        <div className='flex items-center justify-center space-x-3'>
-                            <button  className='btn text-3xl flex items-center justify-center text-green-500'><FaGoogle/></button>
-                            <button className='btn text-3xl flex items-center justify-center text-primary'><FaGithub /></button>
-                        </div>
+                       <SocialSignin></SocialSignin>
                         <h6 className='my-5 text-center'>not have account<Link className='text-primary font-semibold' href={'/signup'}>Sign up</Link></h6>
                     </div>
                 </div>

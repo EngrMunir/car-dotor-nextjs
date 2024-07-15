@@ -1,10 +1,18 @@
+"use client"
 import Image from 'next/image';
 import Link from 'next/link';
+import { signOut, useSession } from 'next-auth/react';
 import React from 'react';
 import { IoCartOutline } from "react-icons/io5";
 import { MdOutlineSearch } from "react-icons/md";
 
 const Navbar = () => {
+
+    const session = useSession();
+    console.log(session)
+
+
+
     const navItems =[
         {
             title:"Home",
@@ -49,6 +57,15 @@ const Navbar = () => {
     <IoCartOutline />
     <MdOutlineSearch />
     <a className="btn btn-outline btn-primary">Appointment</a>
+    {/* <div>
+        <Image alt={session?.data?.user?.name} src={session?.data?.user?.image} height={50} width={50}></Image>
+    </div> */}
+   {!session.data &&
+     <Link href="/login"> <button className='btn btn-primary mr-4'>Login</button></Link>    
+    }
+    { session.data &&
+        <button className='btn btn-primary px-8' onClick={()=> signOut}>Logout</button>
+    }
     </div>
   </div>
 </div>

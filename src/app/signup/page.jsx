@@ -1,5 +1,6 @@
 "use client"
 
+import SocialSignin from '@/components/shared/SocialSignin';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -22,10 +23,9 @@ const page = () => {
                 "content-type":"application/json"
             }
         })
-        console.log(resp);
-        // if(resp){
-        //     event.target.reset()
-        // }
+        if(resp.status === 200){
+            event.target.reset()
+        }
     }
     return (
         <div className='container mx-auto py-24 px-24'>
@@ -35,7 +35,7 @@ const page = () => {
                 <Image src="/assets/images/login/login.svg" height="540" width="540" alt='login image' />
             </div>
             <div className='border-2 p-12'>
-            <h3 className='text-3xl font-semibold text-primary text-center mb-12'>Sign In</h3>
+            <h3 className='text-3xl font-semibold text-primary text-center mb-12'>Sign Up</h3>
                 <form onSubmit={handleRegister}>
                     <label htmlFor="name">Name</label>
                     <input type="text" name='name' placeholder='your name' className='input input-bordered w-full max-e-x5 mt-2' />
@@ -48,11 +48,8 @@ const page = () => {
                     <button type='submit' className='btn btn-primary w-full mt-12'>Sign Up</button>
                 </form>
                 <div>
-                    <h6 className='my-12 text-center'>or sign in with</h6>
-                    <div className='flex items-center justify-center space-x-3'>
-                        <button  className='btn text-3xl flex items-center justify-center text-green-500'><FaGoogle/></button>
-                        <button className='btn text-3xl flex items-center justify-center text-primary'><FaGithub /></button>
-                    </div>
+                    <h6 className='my-12 text-center'>or sign up with</h6>
+                    <SocialSignin></SocialSignin>
                     <h6 className='my-12 text-center'>Already Registered<Link className='text-primary font-semibold' href={'/login'}>Login</Link></h6>
                 </div>
             </div>

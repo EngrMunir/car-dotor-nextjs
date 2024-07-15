@@ -15,7 +15,17 @@ const page = () => {
             email: event.target.email.value,
             password: event.target.password.value,
         }
-        console.log(newUser);
+        const resp = await fetch("http://localhost:3000/signup/api",{
+            method:"POST",
+            body: JSON.stringify(newUser),
+            headers:{
+                "content-type":"application/json"
+            }
+        })
+        console.log(resp);
+        // if(resp){
+        //     event.target.reset()
+        // }
     }
     return (
         <div className='container mx-auto py-24 px-24'>
@@ -35,7 +45,7 @@ const page = () => {
                     <br /><br />
                     <label htmlFor="email">Password</label>
                     <input type="text" name='password' placeholder='your password' className='input input-bordered w-full max-e-x5 mt-2' />
-                    <button type='submit' className='btn btn-primary w-full mt-12'>Sign In</button>
+                    <button type='submit' className='btn btn-primary w-full mt-12'>Sign Up</button>
                 </form>
                 <div>
                     <h6 className='my-12 text-center'>or sign in with</h6>

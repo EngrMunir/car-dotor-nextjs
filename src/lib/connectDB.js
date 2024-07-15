@@ -13,7 +13,7 @@ export const connectDB = async ()=>{
                 deprecationErrors:true,
             },
         });
-        db= client.db('car-doctor-nextjs')
+        db= client.db('nextCarDB')
         return db;
     } catch (error) {
         console.log(error)

@@ -27,12 +27,12 @@ const page = () => {
                     <button type='submit' className='btn btn-primary w-full mt-12'>Sign In</button>
                     </form>
                     <div>
-                        <h6 className='my-12 text-center'>or sign in with</h6>
+                        <h6 className='my-5 text-center'>or sign in with</h6>
                         <div className='flex items-center justify-center space-x-3'>
                             <button  className='btn text-3xl flex items-center justify-center text-green-500'><FaGoogle/></button>
                             <button className='btn text-3xl flex items-center justify-center text-primary'><FaGithub /></button>
                         </div>
-                        <h6 className='my-12 text-center'>not have account<Link className='text-primary font-semibold' href={'/signup'}>Sign up</Link></h6>
+                        <h6 className='my-5 text-center'>not have account<Link className='text-primary font-semibold' href={'/signup'}>Sign up</Link></h6>
                     </div>
                 </div>
             </div>
